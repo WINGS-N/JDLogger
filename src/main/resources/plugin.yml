@@ -1,0 +1,45 @@
+name: JDLogger
+main: WINGS.DLogger.Main
+version: ${project.version} WINGS EDITION
+authors: [WINGS7]
+website: https://www.spigotmc.org/resources/jdlogger-death-logger.85280/
+description: 'Plugin that records deaths and their details.'
+load: POSTWORLD
+
+commands:
+    jdl:
+        usage: /<command> r/tps/u/h
+        description: Main command.
+        aliases: [deathlogger]
+    jdllegacy:
+        usage: /<command> <FileName>
+        description: Legacy jdl or ndl inv data decode. (jdl and ndl data compatible)
+        aliases: [deathloggerlegacy]
+permissions:
+  jdl.rollback:
+    description: Allows rollback inventory via /jdl r
+    default: op
+  jdl.lowtps:
+    description: Allows to survive if tps lower, than config value
+    default: true
+  jdl.bigping:
+    description: Allows to survive if ping bigger, than config value
+    default: true
+  jdl.help:
+    description: Allows get help via /jdl
+    default: true
+  jdl.gettps:
+    description: Allows get JDLoggers's tps via /jdl tps
+    default: true
+  jdl.getping:
+    description: Allows get player's ping via /jdl ping
+    default: true
+  jdl.debug:
+    description: Old in-game debug
+    default: false
+  jdl.upd:
+    description: Allows update JDLogger via /jdl u
+    default: op
+  jdl.gc:
+    description: Allows use /jdl gc
+    default: op

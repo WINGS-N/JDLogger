@@ -1,0 +1,2 @@
+# JDLogger
+ Minecraft Death Logger
