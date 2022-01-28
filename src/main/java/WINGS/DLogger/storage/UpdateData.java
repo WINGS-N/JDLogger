@@ -18,9 +18,6 @@ public interface UpdateData {
     //File ext
     String ext = ".jar";
 
-    //GetJAR deprecated server (Korea)
-    String deprecatedURL = "https://_disablelink_korea.wings.host/minecraft/plugins/" + UpdatePlugin + "/";
-
     //GetJAR server (GitHub)
-    String URL = "https://github.com/WINGS07/JDLogger_releases/releases/latest/download/";
+    String URL = "https://github.com/WINGS07/JDLogger/releases/latest/download/";
 }

@@ -29,24 +29,24 @@ public class DownloadWinUpdater {
             return;
         }
 
-        s.sendMessage(UpdateData.prefix + ChatColor.RED + "Downloading Windows updater for " + UpdateData.UpdatePlugin + "...");
+        s.sendMessage(UpdateData.prefix + ChatColor.RED + "Downloading Windows Updater for " + UpdateData.UpdatePlugin + "...");
 
         updateInProgress = true;
 
         try {
             Method getFile = JavaPlugin.class.getDeclaredMethod("getFile");
             getFile.setAccessible(true);
-            File dest = new File("plugins/" + UpdateData.UpdatePlugin + "_UPD" + UpdateData.ext);
+            File dest = new File("plugins/" + UpdateData.UpdatePlugin + "_WinUPD" + UpdateData.ext);
 
             //Connect
             URL url =
                     new URL(UpdateData.URL +
-                            UpdateData.UpdatePlugin + "_UPD" +
+                            UpdateData.UpdatePlugin + "_WinUPD" +
                             UpdateData.ext);
 
             // Creating con
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "WINGS07/JDLogger-SelfUpdater");
+            con.setRequestProperty("User-Agent", "WINGS07/JDLogger-SelfUpdater-Windows");
 
             // Get input stream
             try (InputStream input = con.getInputStream()) {

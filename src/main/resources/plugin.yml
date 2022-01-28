@@ -2,13 +2,13 @@ name: JDLogger
 main: WINGS.DLogger.Main
 version: ${project.version} WINGS EDITION
 authors: [WINGS7]
-website: https://www.spigotmc.org/resources/jdlogger-death-logger.85280/
+website: https://github.com/WINGS07/JDLogger/wiki
 description: 'Plugin that records deaths and their details.'
 load: POSTWORLD
 
 commands:
     jdl:
-        usage: /<command> r/tps/u/h
+        usage: /<command> r/tps/ping/u
         description: Main command.
         aliases: [deathlogger]
     jdllegacy:

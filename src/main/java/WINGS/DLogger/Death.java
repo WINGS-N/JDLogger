@@ -1,10 +1,7 @@
 package WINGS.DLogger;
 
-import WINGS.ChunkWorker.ChunkForceLoader;
-import WINGS.ChunkWorker.ChunkLoader;
-import WINGS.ChunkWorker.ChunkUnloader;
 import WINGS.DLogger.storage.SS;
-import WINGS.IP.GetIP;
+import WINGS.providers.IP.GetIP;
 import WINGS.InventoryWorker.ItemSerialization;
 import WINGS.providers.JVM.RAM;
 import WINGS.providers.JVM.Uptime;
@@ -36,7 +33,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -142,7 +138,7 @@ public class Death implements Listener {
         }
         int ping = 0;
         if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN")) {
-            p.getPing();
+            ping = p.getPing();
         }
 
 
@@ -159,17 +155,6 @@ public class Death implements Listener {
         if (config.getBoolean("DEV.DEBUG")) {
             log.info(SS.TZID + tz);
             log.info(SS.TimeNow + dtf.format(now));
-        }
-
-
-        if (config.getBoolean("OnDeath.DCUNLOADER")) {
-            new ChunkUnloader(pChunk);
-        }
-        if (config.getBoolean("OnDeath.DCLOADER")) {
-            new ChunkLoader(pChunk);
-        }
-        if (config.getBoolean("OnDeath.FORCEDCLOADER")) {
-            new ChunkForceLoader(pChunk);
         }
 
 
@@ -260,17 +245,9 @@ public class Death implements Listener {
             o.newLine();
             o.write(SS.Using + "JDLogger " + Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("JDLogger")).getDescription().getVersion());
             o.newLine();
-            o.write(SS.webSpigot + Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("JDLogger")).getDescription().getWebsite());
+            o.write(SS.site + Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("JDLogger")).getDescription().getWebsite());
             o.newLine();
-            o.write("TimeZone: " + config.getString("LOG.TimeZone") + " //Not working shit");
-            String host = System.getProperty("host");
-            if (Objects.equals(host, "WINGS")) {
-                o.newLine();
-                o.write(SS.GoodHost);
-            } else {
-                o.newLine();
-                o.write(SS.UnknownHost);
-            }
+            o.write("TimeZone: " + config.getString("LOG.TimeZone"));
             o.newLine();
             o.write(SS.ServerIP + ServerAddress);
             o.newLine();
@@ -322,18 +299,6 @@ public class Death implements Listener {
             o.newLine();
 
             o.write("Chunk Hash: " + ChunkHash);
-
-            o.newLine();
-
-            o.write("DCU Enabled: " + config.getBoolean("OnDeath.DCUNLOADER"));
-
-            o.newLine();
-
-            o.write("DCL Enabled: " + config.getBoolean("OnDeath.DCLOADER"));
-
-            o.newLine();
-
-            o.write("FDCL Enabled: " + config.getBoolean("OnDeath.FORCEDCLOADER"));
 
             o.newLine();
 
@@ -576,9 +541,8 @@ public class Death implements Listener {
             o.close();
 
         } catch (Exception exc) {
-            log.severe(SS.ERROR);
+            log.severe(SS.ERROR + exc.getMessage());
             if (config.getBoolean("DEV.DEBUG")) {
-                log.severe(SS.ERROR + exc.getMessage());
                 exc.printStackTrace();
                 if (p.hasPermission(SS.DebugPerm)) {
                     p.sendMessage(ChatColor.DARK_RED + SS.ERROR + exc.getMessage());

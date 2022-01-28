@@ -13,6 +13,10 @@ public class HelpCommand {
             s.sendMessage(ChatColor.AQUA + SS.LogSeparator);
             s.sendMessage(SS.Space);
             s.sendMessage(ChatColor.AQUA + SS.helpRollback);
+            s.sendMessage(ChatColor.AQUA + SS.helpTPS);
+            s.sendMessage(ChatColor.AQUA + SS.helpPING);
+            s.sendMessage(ChatColor.AQUA + SS.helpGC);
+            s.sendMessage(ChatColor.AQUA + SS.helpInfo);
         }
     }
 }

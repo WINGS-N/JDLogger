@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
     public Logger log = getLogger();
     private static final CommandListener commandListener = new CommandListener();
     FileConfiguration config = this.getConfig();
-    File winupdater = new File("plugins/" + UpdateData.UpdatePlugin + "_UPD" + UpdateData.ext);
+    File winupdater = new File("plugins/" + UpdateData.UpdatePlugin + "_WinUPD" + UpdateData.ext);
 
     public String os = System.getProperty("os.name");
     public boolean debug = config.getBoolean("DEV.DEBUG");
@@ -48,8 +48,7 @@ public class Main extends JavaPlugin implements Listener {
             }
         } else if (BS.dev) {
             log.warning(SS.NoDevBuildSelfUpdate);
-        }
-        else {
+        } else {
             if (winupdater.exists()) {
                 winupdater.delete();
             }
@@ -57,28 +56,16 @@ public class Main extends JavaPlugin implements Listener {
         }
 
         //CFG ver checks:
-        this.getConfig();
-
-        //Too new
-        if (config.getInt("ConfigVersion") > IS.CFGver) {
+        if (!new File("plugins/JDLogger/config.yml").exists()) {
+            log.info(SS.CFGnull);
+        } else if (config.getInt("ConfigVersion") > IS.CFGver) {
             log.warning(SS.CFGver1);
-        }
-
-        //OLD
-        if (config.getInt("ConfigVersion") < IS.CFGver) {
+        } else if (config.getInt("ConfigVersion") < IS.CFGver) {
             log.warning(SS.CFGver0);
-        }
-
-        if (config.getInt("ConfigVersion") < 8) {
+        } else if (config.getInt("ConfigVersion") < 8) {
             Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        }
-
-
-        //Passed
-        if (config.getInt("ConfigVersion") == IS.CFGver) {
+        } else if (config.getInt("ConfigVersion") == IS.CFGver) {
             log.info(SS.CFGverPASS);
-        } else {
-            log.warning(SS.CFGnull);
         }
 
         //Config defaults
@@ -99,10 +86,6 @@ public class Main extends JavaPlugin implements Listener {
         if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN")) {
             config.addDefault("LagMeter.BigPingMessage", "You haven't taken damage because your ping = %s");
         }
-
-        config.addDefault("OnDeath.DCUNLOADER", false);
-        config.addDefault("OnDeath.DCLOADER", false);
-        config.addDefault("OnDeath.FORCEDCLOADER", false);
 
         config.addDefault("DEV.DEBUG", false);
         config.options().copyDefaults(true);
@@ -164,7 +147,6 @@ public class Main extends JavaPlugin implements Listener {
 
     public void onDisable() {
         if (os.contains("Windows")) {
-            File winupdater = new File("plugins/" + UpdateData.UpdatePlugin + "_UPD" + UpdateData.ext);
             if (!winupdater.exists()) {
                 new DownloadWinUpdater(Bukkit.getConsoleSender());
             } else {
@@ -173,8 +155,7 @@ public class Main extends JavaPlugin implements Listener {
         } else if (BS.dev) {
             log.warning(SS.DevBuild);
             log.warning(SS.NoDevBuildSelfUpdate);
-        }
-        else {
+        } else {
             if (winupdater.exists()) {
                 winupdater.delete();
             }

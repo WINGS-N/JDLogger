@@ -48,22 +48,17 @@ public interface SS {
 
     //Authors & Plugin data
     String pl = "JDLogger";
-    String PluginAuthor = "WINGS";
-    String bug_report = "https://github.com/WINGS07/JDLogger_releases/issues";
-    String spigot = "https://www.spigotmc.org/resources/jdlogger-death-logger.85280";
+    String PluginAuthor = "WINGS7";
+    String bug_report = "https://github.com/WINGS07/JDLogger/issues";
+    String spigot = null;
 
     //Messages
-
-    //ADS
-    String GoodHost = "Running on host: WINGS HOST. Thanks for choosing us!";
-    String UnknownHost = "Running on host: " + System.getProperty("host");
 
     //On load MSG
     String LagMeterStart = "Starting LagMeter : Loading components...";
     String LagMeterLowTPSStart = "Starting LagMeter : component : WINGS.DLogger.listeners.lags.LagDMGevent";
     String LagMeterBigPingStart = "Starting LagMeter : component : WINGS.DLogger.listeners.lags.PingsDMGevent";
     String DeathEventListenerStart = "Starting Death listener : WINGS.DLogger.Death";
-    String ItemListenerStart = "LEGACY : Starting Item Listener : WINGS.DLogger.ItemListener";
     String by = "By ";
     String Detected = "Detected ";
     String Loading = "Loading...";
@@ -76,7 +71,7 @@ public interface SS {
     String WindowsWarning = "JDLogger not tested on Windows OS, so if you notice any bugs, report it: " + bug_report;
     String NotWindows = "Running not on Windows OS. All JDLogger functions enabled! " + "\uD83D\uDC9C";
     String NotWindowsRunning = "Running on: ";
-    String WindowsSelfUpdateNote = "SelfUpdate on Windows OS still in beta. It happens with a plugin JDLogger_UPD.jar, please, don't rename/remove it.";
+    String WindowsSelfUpdateNote = "SelfUpdate on Windows OS still in beta. Plugin JDLogger_WinUPD.jar responsible for SelfUpdate, please, don't rename/remove it.";
     String NoDevBuildSelfUpdate = "Running dev build, auto update cancelled";
     String DevBuild = ChatColor.RED + "______ JDLogger DEV BUILD! ______";
 
@@ -95,16 +90,14 @@ public interface SS {
     String TPSDeath1 = config.getString("LagMeter.LowTPSMessage") + " ";
     String BigPing = config.getString("LagMeter.BigPingMessage") + " ";
     String LowTpsMob = "TPS is low now. You cannot damage mobs.";
-    String Ping = "Ping = ";
+    String Ping = "PING = %s";
 
     //File Info Strings
     String RightsInLogFile = "DEATH LOGGER WINGS EDITION BY " + SS.PluginAuthor;
-    String LogSeparator = "_-_-_-_-_-_-_-_-_-_-_-_-_-_";
+    String LogSeparator = "---------------------------";
     String LogSeparatorHashTag = "##############";
     String Using = "Using ";
-    String webSpigot = "Spigot: ";
-    String webLatest = "";
-    String PINGS = "PING";
+    String site = "Site: ";
     String InvSavedIn = "Inventory path: ";
     String ArmorSavedIn = "Armor path: ";
 
@@ -147,8 +140,10 @@ public interface SS {
     //CMD help Messages
     String helpPage = "JDLogger v." + Objects.requireNonNull(Bukkit.getPluginManager().getPlugin(pl)).getDescription().getVersion() + " Help (1/1)";
     String helpRollback = "/jdl r PlayerName/" + config.getString("LOG.DateFormat") + " - Rollback Player's on-Death inventory";
+    String helpTPS = "/jdl tps - get JDLogger's tps";
+    String helpPING = "/jdl ping - get ping";
+    String helpGC = "/jdl gc - execute java garbage collection via System.gc(), may be can temporary help fix low TPS" + ChatColor.YELLOW + " (!USE WITH CAUTION!)";
     String helpInfo = "/jdl info - Info about JDLogger";
-    String helpLTPS = "/jdl tps - get LagMeter tps";
 
     //CMD GC Messages
     String gcstart = UpdateData.prefix + ChatColor.YELLOW + "Starting Garbage Collection...";

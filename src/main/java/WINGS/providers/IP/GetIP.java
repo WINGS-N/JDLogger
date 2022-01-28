@@ -1,4 +1,4 @@
-package WINGS.IP;
+package WINGS.providers.IP;
 
 import java.io.BufferedReader;
 import java.io.IOException;

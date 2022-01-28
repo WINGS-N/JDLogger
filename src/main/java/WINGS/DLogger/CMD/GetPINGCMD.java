@@ -13,7 +13,7 @@ public class GetPINGCMD {
             if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN")) {
                 Player p = (Player) s;
                 int ping = p.getPing();
-                String pingmsg = String.format("PING = %s", ping);
+                String pingmsg = String.format(SS.Ping, ping);
                 p.sendMessage(ChatColor.BLUE + SS.LagometrPrefix + pingmsg);
             } else {
                 s.sendMessage(ChatColor.RED + SS.LagometrPrefix + "This feature 1.17+ only");
