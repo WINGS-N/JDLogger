@@ -23,7 +23,7 @@ jobs:
         distribution: 'zulu'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml && mkdir dev && cp target/*.jar dev/JDLogger.jar
+      run: mvn -B package --file pom.xml && mkdir dev && cp target/*.jar dev/
     - name: Upload JAR file
       uses: actions/upload-artifact@v2
       with:
