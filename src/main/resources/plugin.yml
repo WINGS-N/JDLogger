@@ -1,7 +1,7 @@
 name: JDLogger
-main: WINGS.DLogger.Main
-version: ${project.version} WINGS EDITION
-authors: [WINGS7]
+main: WINGS7N.DLogger.Main
+version: ${project.version} WINGS7N EDITION
+author: WINGS7N
 website: https://github.com/WINGS07/JDLogger/wiki
 description: 'Plugin that records deaths and their details.'
 load: POSTWORLD
