@@ -4,10 +4,7 @@ import WINGS7N.DLogger.listeners.CommandListener;
 import WINGS7N.DLogger.listeners.PlayerJoinListener;
 import WINGS7N.DLogger.listeners.lags.LagDMGevent;
 import WINGS7N.DLogger.listeners.lags.PingDMGevent;
-import WINGS7N.DLogger.storage.BS;
-import WINGS7N.DLogger.storage.IS;
-import WINGS7N.DLogger.storage.SS;
-import WINGS7N.DLogger.storage.UpdateData;
+import WINGS7N.DLogger.storage.*;
 import WINGS7N.PluginUpdater.DownloadWinUpdater;
 import WINGS7N.PluginUpdater.SelfUpdate;
 import WINGS7N.providers.NMS.APIunsupported;
@@ -31,12 +28,10 @@ public class Main extends JavaPlugin implements Listener {
     File winupdater = new File("plugins/" + UpdateData.UpdatePlugin + "_WinUPD" + UpdateData.ext);
 
     public String os = System.getProperty("os.name");
-    public boolean debug = config.getBoolean("DEV.DEBUG");
 
     public void onEnable() {
         if (BS.dev) {
             log.warning(SS.DevBuild);
-            debug = true;
             Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         }
 
@@ -70,24 +65,26 @@ public class Main extends JavaPlugin implements Listener {
 
         //Config defaults
         this.saveDefaultConfig();
-        config.addDefault("ConfigVersion", IS.CFGver);
-        config.addDefault("LOG.LogInventory", true);
-        config.addDefault("LOG.LogArmor", true);
-        config.addDefault("LOG.DateFormat", "dd.MM.yy_HH.mm.ss");
-        config.addDefault("LOG.TimeZone", "Asia/Seoul");
+        config.addDefault("ConfigVersion", defaults.ConfigVersion);
+        config.addDefault("LOG.LogInventory", defaults.LOG_LogInventory);
+        config.addDefault("LOG.LogArmor", defaults.LOG_LogArmor);
+        config.addDefault("LOG.DateFormat", defaults.LOG_DateFormat);
+        config.addDefault("LOG.TimeZone", defaults.LOG_TimeZone);
 
-        config.addDefault("LagMeter.enable", true);
-        config.addDefault("LagMeter.ActivateTPS", 16.0);
+        config.addDefault("LagMeter.enable", defaults.LagMeter_enable);
+        config.addDefault("LagMeter.prefix", defaults.LagMeter_prefix);
+        config.addDefault("LagMeter.TPS.ActivateTPS", defaults.LagMeter_TPS_ActivateTPS);
+        config.addDefault("LagMeter.TPS.LowTPSMessage", defaults.LagMeter_TPS_LowTPSMessage);
+        config.addDefault("LagMeter.TPS.LowTPSPreventEntityDamage", defaults.LagMeter_TPS_LowTPSPreventEntityDamage);
+        config.addDefault("LagMeter.TPS.LowTPSEntityDamageMessage", defaults.LagMeter_TPS_LowTPSEntityDamageMessage);
         if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN")) {
-            config.addDefault("LagMeter.ActivatePING", 700);
-        }
-        config.addDefault("LagMeter.prefix", "[JDL >>> LAGMETER]");
-        config.addDefault("LagMeter.LowTPSMessage", "You haven't taken damage because tps = %s");
-        if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN")) {
-            config.addDefault("LagMeter.BigPingMessage", "You haven't taken damage because your ping = %s");
+            config.addDefault("LagMeter.PING.ActivatePING", defaults.LagMeter_PING_ActivatePING);
+            config.addDefault("LagMeter.PING.HighPingMessage", defaults.LagMeter_PING_HighPingMessage);
+            config.addDefault("LagMeter.PING.HighPingPreventEntityDamage", defaults.LagMeter_PING_HighPingPreventEntityDamage);
+            config.addDefault("LagMeter.PING.HighPingEntityDamageMessage", defaults.LagMeter_PING_HighPingEntityDamageMessage);
         }
 
-        config.addDefault("DEV.DEBUG", false);
+        config.addDefault("DEV.DEBUG", defaults.DEV_DEBUG);
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -98,25 +95,25 @@ public class Main extends JavaPlugin implements Listener {
 
         //Main JDL component
         Bukkit.getPluginManager().registerEvents(new Death(), this);
-        if (debug) {
+        if (debug.get()) {
             log.warning(SS.DeathEventListenerStart);
         }
 
         //JDL LagMeter
-        if (config.getBoolean("LagMeter.enable")) {
-            if (debug) {
+        if (config.getBoolean("LagMeter.enable", defaults.LagMeter_enable)) {
+            if (debug.get()) {
                 log.warning(SS.LagMeterStart);
             }
-            if (config.getInt("LagMeter.ActivateTPS") != 0) {
+            if (config.getDouble("LagMeter.TPS.ActivateTPS", defaults.LagMeter_TPS_ActivateTPS) != 0) {
                 Bukkit.getPluginManager().registerEvents(new LagDMGevent(), this);
-                if (debug) {
+                if (debug.get()) {
                     log.warning(SS.LagMeterLowTPSStart);
                 }
             }
-            if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN") && config.getInt("LagMeter.ActivatePING") != 0) {
+            if (APIunsupported.run(GetNMSver.run()).equals("UNKNOWN") && config.getInt("LagMeter.PING.ActivatePING", defaults.LagMeter_PING_ActivatePING) != 0) {
                 Bukkit.getPluginManager().registerEvents(new PingDMGevent(), this);
-                if (debug) {
-                    log.warning(SS.LagMeterBigPingStart);
+                if (debug.get()) {
+                    log.warning(SS.LagMeterHighPingStart);
                 }
             }
 

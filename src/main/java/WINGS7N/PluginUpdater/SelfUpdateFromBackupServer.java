@@ -25,8 +25,9 @@ public class SelfUpdateFromBackupServer {
     FileConfiguration config = Objects.requireNonNull(pl).getConfig();
 
     public SelfUpdateFromBackupServer(CommandSender s) {
-        //pl.getLogger().warning("bck_srv_upd disabled");
-        //}
+        pl.getLogger().warning("bck_srv_upd disabled");
+    }
+        /*
         if (updateInProgress) {
             s.sendMessage(ChatColor.RED + "Update from backup server already in progress");
             return;
@@ -65,4 +66,5 @@ public class SelfUpdateFromBackupServer {
             updateInProgress = false;
         }
     }
+         */
 }

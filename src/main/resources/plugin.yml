@@ -1,8 +1,9 @@
 name: JDLogger
 main: WINGS7N.DLogger.Main
-version: ${project.version} WINGS7N EDITION
+version: ${project.version}
+api-version: 1.13
 author: WINGS7N
-website: https://github.com/WINGS07/JDLogger/wiki
+website: https://github.com/WINGS7N/JDLogger/wiki
 description: 'Plugin that records deaths and their details.'
 load: POSTWORLD
 
@@ -34,9 +35,6 @@ permissions:
   jdl.getping:
     description: Allows get player's ping via /jdl ping
     default: true
-  jdl.debug:
-    description: Old in-game debug
-    default: false
   jdl.upd:
     description: Allows update JDLogger via /jdl u
     default: op

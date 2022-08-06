@@ -1,6 +1,7 @@
 package WINGS7N.DLogger;
 
 import WINGS7N.DLogger.storage.SS;
+import WINGS7N.DLogger.storage.debug;
 import WINGS7N.providers.IP.GetIP;
 import WINGS7N.InventoryWorker.ItemSerialization;
 import WINGS7N.providers.JVM.RAM;
@@ -52,12 +53,12 @@ public class Death implements Listener {
 
     String NoIPdataSetting = System.getProperty("JDLogger.NoIP");
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void DeathEvent(PlayerDeathEvent e) {
 
         Player p = e.getEntity();
 
-        if (config.getBoolean("DEV.DEBUG")) {
+        if (debug.get()) {
             log.info(ChatColor.DARK_RED + SS.Logging);
         }
         String ServerAddress = "Disabled by JDLogger.NoIP";
@@ -152,7 +153,7 @@ public class Death implements Listener {
         ZoneId tz = ZoneId.of(Objects.requireNonNull(config.getString("LOG.TimeZone")));
         ZonedDateTime now = ZonedDateTime.ofInstant(Instant.now(), tz);
 
-        if (config.getBoolean("DEV.DEBUG")) {
+        if (debug.get()) {
             log.info(SS.TZID + tz);
             log.info(SS.TimeNow + dtf.format(now));
         }
@@ -162,7 +163,7 @@ public class Death implements Listener {
             //Create files
             File PInvData = new File(SS.DLPath + PlayerName + SS.FolderSeparator);
             if (!PInvData.exists()) {
-                if (config.getBoolean("DEV.DEBUG")) {
+                if (debug.get()) {
                     log.info(SS.CreatingInvDataFolder + PlayerName);
                 }
                 PInvData.mkdirs();
@@ -171,7 +172,7 @@ public class Death implements Listener {
 
             File PlayerPath = new File(SS.DLPath + PlayerName + SS.FolderSeparator + dtf.format(now) + SS.DLInvPath + PlayerName + SS.FolderSeparator);
             if (!PlayerPath.exists()) {
-                if (config.getBoolean("DEV.DEBUG")) {
+                if (debug.get()) {
                     log.info(SS.CreatingFolder + PlayerName);
                 }
                 PlayerPath.mkdirs();
@@ -192,12 +193,8 @@ public class Death implements Listener {
             }
         } catch (Exception exc) {
             log.severe(SS.ERROR);
-            if (config.getBoolean("DEV.DEBUG")) {
+            if (debug.get()) {
                 log.severe(SS.ERROR + exc.getMessage());
-                exc.printStackTrace();
-                if (p.hasPermission(SS.DebugPerm)) {
-                    p.sendMessage(ChatColor.DARK_RED + SS.ERROR + exc.getMessage());
-                }
             }
         }
 
@@ -213,12 +210,9 @@ public class Death implements Listener {
 
         } catch (Exception exc) {
             log.severe(SS.ERROR);
-            if (config.getBoolean("DEV.DEBUG")) {
+            if (debug.get()) {
                 log.severe(SS.ERROR + exc.getMessage());
                 exc.printStackTrace();
-                if (p.hasPermission(SS.DebugPerm)) {
-                    p.sendMessage(ChatColor.DARK_RED + SS.ERROR + exc.getMessage());
-                }
             }
         }
 
@@ -227,7 +221,7 @@ public class Death implements Listener {
             File MainLogFolder = new File(SS.DLPath);
             if (!MainLogFolder.exists()) {
                 MainLogFolder.mkdirs();
-                if (config.getBoolean("DEV.DEBUG")) {
+                if (debug.get()) {
                     log.info(SS.CreatingMainDLFolder);
                 }
             }
@@ -542,11 +536,8 @@ public class Death implements Listener {
 
         } catch (Exception exc) {
             log.severe(SS.ERROR + exc.getMessage());
-            if (config.getBoolean("DEV.DEBUG")) {
+            if (debug.get()) {
                 exc.printStackTrace();
-                if (p.hasPermission(SS.DebugPerm)) {
-                    p.sendMessage(ChatColor.DARK_RED + SS.ERROR + exc.getMessage());
-                }
             }
         }
     }
