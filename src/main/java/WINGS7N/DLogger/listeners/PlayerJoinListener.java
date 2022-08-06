@@ -34,9 +34,16 @@ public class PlayerJoinListener implements Listener {
                 Bukkit.shutdown();
             }
             else if (config.getInt("ConfigVersion") == 8) {
-                config.set("LagMeter.LowTPSMessage", "You haven't taken damage because tps = %f");
+                config.set("LagMeter.TPS.LowTPSMessage", "You haven't taken damage because tps = %f");
                 config.set("ConfigVersion", 9);
                 p.sendMessage(ChatColor.YELLOW + "[JDLogger] [WARNING] [CONFIG UPDATE] LagMeter.LowTPSMessage set to default, config version updated");
+                p.sendMessage(ChatColor.YELLOW + "[JDLogger] [WARNING] Reloading JDLogger with PlugMan... If PlugMan not installed, restart server.");
+                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "plugman reload JDLogger");
+            }
+            else if (config.getInt("ConfigVersion") == 11) {
+                p.sendMessage(ChatColor.YELLOW + "[JDLogger] [WARNING] [CONFIG UPDATE] Config version updated, please, restart your server to reconfigure JDLogger");
+                File congigfile = new File("plugins/JDLogger/config.yml");
+                congigfile.delete();
                 p.sendMessage(ChatColor.YELLOW + "[JDLogger] [WARNING] Reloading JDLogger with PlugMan... If PlugMan not installed, restart server.");
                 Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "plugman reload JDLogger");
             }

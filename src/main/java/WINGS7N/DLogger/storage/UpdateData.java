@@ -20,5 +20,5 @@ public interface UpdateData {
 
     //GetJAR server (GitHub)
     String URL = "https://github.com/WINGS7N/JDLogger/releases/latest/download/";
-    String deprecatedURL = "https://github.com/WINGS07/JDLogger/releases/latest/download/";
+    //String deprecatedURL = "https://github.com/WINGS07/JDLogger/releases/latest/download/";
 }

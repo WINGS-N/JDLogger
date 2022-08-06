@@ -18,7 +18,6 @@ public interface SS {
     String accessPerm = "jdl.lowtps";
     String BigPingPerm = "jdl.bigping";
     String checkPerm = "jdl.rollback";
-    String DebugPerm = "jdl.debug";
     String HelpPerm = "jdl.help";
     String GetTPSPerm = "jdl.gettps";
     String GetPINGPerm = "jdl.getping";
@@ -48,16 +47,15 @@ public interface SS {
 
     //Authors & Plugin data
     String pl = "JDLogger";
-    String PluginAuthor = "WINGS7";
-    String bug_report = "https://github.com/WINGS07/JDLogger/issues";
-    String spigot = null;
+    String PluginAuthor = "WINGS7N";
+    String bug_report = "https://github.com/WINGS7N/JDLogger/issues";
 
     //Messages
 
     //On load MSG
     String LagMeterStart = "Starting LagMeter : Loading components...";
     String LagMeterLowTPSStart = "Starting LagMeter : component : WINGS7N.DLogger.listeners.lags.LagDMGevent";
-    String LagMeterBigPingStart = "Starting LagMeter : component : WINGS7N.DLogger.listeners.lags.PingsDMGevent";
+    String LagMeterHighPingStart = "Starting LagMeter : component : WINGS7N.DLogger.listeners.lags.PingsDMGevent";
     String DeathEventListenerStart = "Starting Death listener : WINGS7N.DLogger.Death";
     String by = "By ";
     String Detected = "Detected ";
@@ -84,12 +82,13 @@ public interface SS {
             "]" +
             ChatColor.RESET +
             " ";
-    String LagometrPrefix = config.getString("LagMeter.prefix") + " ";
+    String LagometrPrefix = config.getString("LagMeter.prefix", defaults.LagMeter_prefix) + " ";
 
     //LagMeter Messages
-    String TPSDeath1 = config.getString("LagMeter.LowTPSMessage") + " ";
-    String BigPing = config.getString("LagMeter.BigPingMessage") + " ";
-    String LowTpsMob = "TPS is low now. You cannot damage mobs.";
+    String LowTps = config.getString("LagMeter.TPS.LowTPSMessage", defaults.LagMeter_TPS_LowTPSMessage) + " ";
+    String HighPing = config.getString("LagMeter.PING.HighPingMessage", defaults.LagMeter_PING_HighPingMessage) + " ";
+    String LowTpsMob = config.getString("LagMeter.TPS.LowTPSEntityDamageMessage", defaults.LagMeter_TPS_LowTPSEntityDamageMessage) + " ";
+    String HighPingMob = config.getString("LagMeter.PING.HighPingEntityDamageMessage", defaults.LagMeter_PING_HighPingEntityDamageMessage) + " ";
     String Ping = "PING = %s";
 
     //File Info Strings
@@ -102,7 +101,6 @@ public interface SS {
     String ArmorSavedIn = "Armor path: ";
 
     //Errors
-    String atFileNotFound = "";
     String cantFind = "Can't Find File ";
     String OnlyPlayer = "Only player can execute this command.";
     String NoPerms = "No permissions!";
@@ -115,14 +113,10 @@ public interface SS {
     String ERROR = "ERROR ";
 
     //Debug
-    String DebugWarn = "[WARNING] Debug Mode = 1";
-    String SendingTo = "Sending this operation to ";
-    String SendingData = "Sending Data: ";
     String LowTPSdetected = "Low TPS Detected by LagMeter. TPS = ";
     String PlayerDamageDetected = "Player Damage Event Detected!";
     String CancelingEvent = "Canceling Event ";
     String TimeNow = "Date and Time Detected: ";
-    String TimeZone = "Date and Time Zone Detected: ";
     String DetectedArgs = "Detected Args: ";
     String SettingIS = "Setting Item Stacks...";
     String InvDataCV = "Inventory Coded Data Value = ";
@@ -132,6 +126,8 @@ public interface SS {
     String SendingArmorData = "Sending Decoded Armor Data to player ";
     String TZID = "TimeZone ID = ";
     String HighPingDetected = "High ping detected by LagMeter. PING of player %s = %s";
+    String LowTPSEntityDamageDetected = "Low TPS EntityDamage detected by LagMeter. Damager = %s, TPS = %s";
+    String HighPingEntityDamageDetected = "High ping EntityDamage detected by LagMeter. Damager = %s, PING = %s";
 
     //CMD
     String jdlcmd = "jdl";
