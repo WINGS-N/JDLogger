@@ -233,7 +233,7 @@ public class Death implements Listener {
             o.newLine();
             o.write(SS.RightsInLogFile);
             o.newLine();
-            o.write(SS.NotWindowsRunning + os);
+            o.write(SS.RunningOn + os);
             o.newLine();
             o.write(SS.Using + Bukkit.getVersion());
             o.newLine();
@@ -520,10 +520,13 @@ public class Death implements Listener {
             o.newLine();
             o.newLine();
             o.newLine();
-            o.write("ROLLBACK COMMAND: /jdl r " + PlayerName + SS.FolderSeparator + dtf.format(now));
+            o.write("ROLLBACK CMD: /jdl r " + PlayerName + SS.FolderSeparator + dtf.format(now));
             o.newLine();
             o.newLine();
-            o.write("TP COMMAND: /tp " + pX + " " + pY + " " + pZ);
+            o.write("ROLLBACK TO YOUR INV CMD: /jdl r " + PlayerName + SS.FolderSeparator + dtf.format(now) + " -s");
+            o.newLine();
+            o.newLine();
+            o.write("TP CMD: /tp " + pX + " " + pY + " " + pZ);
 
             o.newLine();
             o.newLine();

@@ -121,12 +121,9 @@ public class Main extends JavaPlugin implements Listener {
 
         //Check OS
         if (os.contains("Windows")) {
-            log.info(SS.Windows);
             log.info(SS.WindowsWarning);
-        } else {
-            log.info(SS.NotWindows);
-            log.info(SS.NotWindowsRunning + os);
         }
+        log.info(SS.RunningOn + os);
 
         //Print Author
         log.info(SS.by + SS.PluginAuthor);

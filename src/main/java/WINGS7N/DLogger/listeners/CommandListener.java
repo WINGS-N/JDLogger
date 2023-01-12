@@ -13,6 +13,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+
+import java.util.Arrays;
+import java.util.Objects;
 
 public class CommandListener implements Listener, CommandExecutor {
 
@@ -28,11 +32,19 @@ public class CommandListener implements Listener, CommandExecutor {
                     case "rollback":
                     case "r":
                         if (s.hasPermission(SS.checkPerm)) {
-                            if (s instanceof Player) {
-                                String FileName = args[1];
-                                new DecodeInventoryFromFile(s, FileName);
+                            String arg3 = null;
+                            if (args.length > 2) {
+                                arg3 = args[2].toLowerCase();
+                            }
+                            String FileName = args[1];
+                            if (Objects.equals(arg3, "-s") || Objects.equals(arg3, "--self")) {
+                                if (s instanceof Player) {
+                                    new DecodeInventoryFromFile(s, FileName, true);
+                                } else {
+                                    s.sendMessage(SS.OnlyPlayer);
+                                }
                             } else {
-                                s.sendMessage(SS.OnlyPlayer);
+                                new DecodeInventoryFromFile(s, FileName, false);
                             }
                         }
                         break;

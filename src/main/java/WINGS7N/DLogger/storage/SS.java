@@ -65,10 +65,8 @@ public interface SS {
     String CFGver0 = "Your config is old. Errors may occur. JDL will try to add new values to old config, but recommended delete old config to generate new.";
     String CFGnull = "Config not found. Creating new JDL configuration...";
     String CFGverPASS = "JDL config version passed check!";
-    String Windows = "Running on Windows, some features may be disabled!";
     String WindowsWarning = "JDLogger not tested on Windows OS, so if you notice any bugs, report it: " + bug_report;
-    String NotWindows = "Running not on Windows OS. All JDLogger functions enabled! " + "\uD83D\uDC9C";
-    String NotWindowsRunning = "Running on: ";
+    String RunningOn = "Running on: ";
     String WindowsSelfUpdateNote = "SelfUpdate on Windows OS still in beta. Plugin JDLogger_WinUPD.jar responsible for SelfUpdate, please, don't rename/remove it.";
     String NoDevBuildSelfUpdate = "Running dev build, auto update cancelled";
     String DevBuild = ChatColor.RED + "______ JDLogger DEV BUILD! ______";
@@ -92,7 +90,7 @@ public interface SS {
     String Ping = "PING = %s";
 
     //File Info Strings
-    String RightsInLogFile = "DEATH LOGGER WINGS7N EDITION BY " + SS.PluginAuthor;
+    String RightsInLogFile = "DEATH LOGGER BY " + SS.PluginAuthor;
     String LogSeparator = "---------------------------";
     String LogSeparatorHashTag = "##############";
     String Using = "Using ";
@@ -104,6 +102,7 @@ public interface SS {
     String cantFind = "Can't Find File ";
     String OnlyPlayer = "Only player can execute this command.";
     String NoPerms = "No permissions!";
+    String player404 = ChatColor.DARK_RED + "Player %s not found on server!";
 
     //Log Message
     String CreatingFolder = "Creating logs folder for player ";
@@ -136,6 +135,7 @@ public interface SS {
     //CMD help Messages
     String helpPage = "JDLogger v." + Objects.requireNonNull(Bukkit.getPluginManager().getPlugin(pl)).getDescription().getVersion() + " Help (1/1)";
     String helpRollback = "/jdl r PlayerName/" + config.getString("LOG.DateFormat") + " - Rollback Player's on-Death inventory";
+    String helpRollback2 = "/jdl r PlayerName/" + config.getString("LOG.DateFormat") + " -s - Rollback Player's on-Death inventory to your inventory";
     String helpTPS = "/jdl tps - get JDLogger's tps";
     String helpPING = "/jdl ping - get ping";
     String helpGC = "/jdl gc - execute java garbage collection via System.gc(), may be can temporary help fix low TPS" + ChatColor.YELLOW + " (!USE WITH CAUTION!)";

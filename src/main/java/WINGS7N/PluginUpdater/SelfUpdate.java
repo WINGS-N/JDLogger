@@ -48,7 +48,7 @@ public class SelfUpdate {
 
             // Creating con
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "WINGS07/JDLogger-SelfUpdater");
+            con.setRequestProperty("User-Agent", "by_N/JDLogger-SelfUpdater");
 
             // Get input stream
             try (InputStream input = con.getInputStream()) {
