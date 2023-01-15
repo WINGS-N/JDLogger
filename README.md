@@ -10,4 +10,3 @@ This plugin can also **protect players from death at a low TPS value and a high 
 
 JDLogger has a **built-in Auto Updater**, so you don't have to worry about updates. They will be installed automatically when the server is started and shut down.
 
-**DO NOT RENAME JAR FILES! It should only be called `JDLogger.jar` for plugin and `JDLogger_WinUPD.jar` for Windows Updater.**
