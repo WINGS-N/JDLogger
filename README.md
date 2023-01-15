@@ -2,7 +2,7 @@
 
 **JDLogger is a Minecraft plugin that allows you to rollback a player's inventory if he died.**
 
-Supports **Minecraft v. 1.13.x - 1.18.x**
+Supports **Minecraft v. 1.13.x - 1.19.x**
 
 In addition, **it can tell you a lot of information about the death of a player, for example, the coordinates, the cause, the TPS of the server and the ping of the player at that moment, so that you can know for sure if he is lying, saying that he died from server lags or ping.**
 
