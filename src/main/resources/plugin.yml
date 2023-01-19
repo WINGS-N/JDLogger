@@ -1,9 +1,9 @@
 name: JDLogger
-main: WINGS7N.DLogger.Main
+main: io.WINGS.JDLogger.Main
 version: ${project.version}
 api-version: 1.13
-author: WINGS7N
-website: https://github.com/WINGS7N/JDLogger/wiki
+authors: [WINGS I.O. by N]
+website: https://github.com/WINGS-IO/JDLogger/wiki
 description: 'Plugin that records deaths and their details.'
 load: POSTWORLD
 

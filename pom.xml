@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>WINGS</groupId>
+    <groupId>WINGS-IO</groupId>
     <artifactId>JDLogger</artifactId>
-    <version>9.6</version>
+    <version>9.7</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <mainClass>WINGS7N.DLogger.Main</mainClass>
+        <mainClass>io.WINGS.JDLogger.Main</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jar.finalName>${project.name}</jar.finalName>
     </properties>
